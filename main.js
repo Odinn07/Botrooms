@@ -7,7 +7,7 @@ const prefix = '!!';
 
 client.on('ready', () =>{
     console.log('I have been resurrected');
-    client.user.setActivity('Minecraft Server - mc.Backrooms.me', { type:'PLAYING'}).catch(console.error);
+    client.user.setActivity('IP:mc.Backrooms.me', { type:'PLAYING'}).catch(console.error);
   
 })
 
@@ -26,4 +26,4 @@ client.on('message', message=>{
 });
 
 
-client.login('toekn');
+client.login('token');
