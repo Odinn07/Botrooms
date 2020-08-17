@@ -26,4 +26,4 @@ client.on('message', message=>{
 });
 
 
-client.login('NzQ0OTc1MDcxMDYzNDQxNTcw.XzrCGQ.kVH00SlyNyGjd97LAN_d4eUTFWY');
+client.login('toekn');
