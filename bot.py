@@ -42,7 +42,7 @@ async def ahelp(ctx):
   setip      Change the ip used by the bot             (Admin only)
   listadmin  Lists roles allowed to use admin commands (Admin only)
   help       Help manu with admin only commands hidden
-  info       Shows bot info
+  info       Shows discord server info
   online     Shows who is on the server
   plug       Get info about The Plug
   serverinfo Get online players from another server
@@ -56,7 +56,7 @@ async def help(ctx):
 
   ahelp         Help for admins (shows admin only commands)
   help          Shows this message
-  info          Shows bot info
+  info          Shows discord server info
   online        Shows who is on the server
   plug          Get info about The Plug
   serverinfo    Get online players from another server
@@ -64,7 +64,7 @@ async def help(ctx):
 ```""")
 
 
-@bot.command(help='Shows bot info')
+@bot.command(help='Shows discord server info')
 async def info(ctx):
     await ctx.send("This is The Backrooms Investigation server where we try to solve the mystery of the location of the mysterious backrooms photo. While many of these liminal space photos like the backrooms could be real, there is some questioning of weather these photos are actually real. Some of them  turn out to be 3D renders. Could the backrooms be a 3D render? We do not know. If not, then there is still something to find out; where the location actually is.")
 
