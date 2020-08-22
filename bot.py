@@ -25,8 +25,16 @@ bot.remove_command('help')
 
 @bot.event
 async def on_ready():
+    print("Bot started")
     activity = discord.Game(name=" on mc.Backrooms.me")
     await bot.change_presence(status=discord.Status.online, activity=activity)
+
+
+@bot.event
+async def on_member_join(member):
+    ment = member.mention
+    channel = bot.get_channel(738869896338997338)
+    await channel.send("Welcome to The Backrooms investagation server "+ ment +", Please don't leave or we will steal your room")
 
 
 @bot.command(help='Admin only Help command')
@@ -42,7 +50,7 @@ async def ahelp(ctx):
   setip      Change the ip used by the bot             (Admin only)
   listadmin  Lists roles allowed to use admin commands (Admin only)
   help       Help manu with admin only commands hidden
-  info       Shows discord server info
+  info       Shows bot info
   online     Shows who is on the server
   plug       Get info about The Plug
   serverinfo Get online players from another server
@@ -56,7 +64,7 @@ async def help(ctx):
 
   ahelp         Help for admins (shows admin only commands)
   help          Shows this message
-  info          Shows discord server info
+  info          Shows bot info
   online        Shows who is on the server
   plug          Get info about The Plug
   serverinfo    Get online players from another server
@@ -64,9 +72,9 @@ async def help(ctx):
 ```""")
 
 
-@bot.command(help='Shows discord server info')
+@bot.command(help='Shows bot info')
 async def info(ctx):
-    await ctx.send("This is The Backrooms Investigation server where we try to solve the mystery of the location of the mysterious backrooms photo. While many of these liminal space photos like the backrooms could be real, there is some questioning of weather these photos are actually real. Some of them  turn out to be 3D renders. Could the backrooms be a 3D render? We do not know. If not, then there is still something to find out; where the location actually is.")
+    await ctx.send("This is The Backrooms Investigation server where we try to solve the mystery of the location of the mysterious backrooms photo. While many of these liminal space photos like the backrooms could be real, there is some questioning of weather these photos are actually real. Some of them  turn out to be 3D renders. Could the backrooms be a 3D render? We do not know. If not, then there is still something to find out; where the location actually is. use !!info to get info about the discord server and !!help to get more bot commands")
 
 @bot.command(help='Get info about The Plug')
 async def plug(ctx):
@@ -89,10 +97,14 @@ async def serverinfo(ctx, ServerIP):
     url = 'https://api.mcsrvstat.us/2/' + ServerIP
     resp = requests.get(url=url)
     data = resp.json()
-    if 'list' in data['players']:
-        response = "Online Players for " + ServerIP + " : " + str(data['players']['list'])
+    if str(data['online']) == "True":
+        if 'list' in data['players']:
+            response = "Online Players for " + ServerIP + " : " + str(data['players']['list'])
+        else:
+            response = "Nobody is online on " + ServerIP
     else:
-        response = "Nobody is online on " + ServerIP
+        response = ServerIP + " Is offline"
+
     await ctx.send(response)
 
 
@@ -123,10 +135,14 @@ async def resetip(ctx):
 async def online(ctx):
     resp = requests.get(url=url)
     data = resp.json()
-    if 'list' in data['players']:
-        response = "Online Players for " + ip + " : " + str(data['players']['list'])
+    if str(data['online']) == "True":
+        if 'list' in data['players']:
+            response = "Online Players for " + ip + " : " + str(data['players']['list'])
+        else:
+            response = "Nobody is online on " + ip
     else:
-        response = "Nobody is online on " + ip
+        response = ip + " Is offline"
+
     await ctx.send(response)
 
 
