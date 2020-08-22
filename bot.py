@@ -34,7 +34,7 @@ async def on_ready():
 async def on_member_join(member):
     ment = member.mention
     channel = bot.get_channel(738869896338997338)
-    await channel.send("Welcome to The Backrooms investagation server "+ ment +", Please don't leave or we will steal your room")
+    await channel.send("Welcome to The Backrooms investagation server "+ ment +", Please don't leave or we will steal your room,\n use !!info to get info about the discord server and !!help to get more bot commands")
 
 
 @bot.command(help='Admin only Help command')
